@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorWoLINQ", "WorWoLINQ\WorW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queries", "Queries\Queries.csproj", "{0EDEC46A-DDC1-43A9-A2FD-CB67B3396941}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars", "Cars\Cars.csproj", "{3B6B3DAC-744B-478C-90F6-D8B5CAE59565}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0EDEC46A-DDC1-43A9-A2FD-CB67B3396941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EDEC46A-DDC1-43A9-A2FD-CB67B3396941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EDEC46A-DDC1-43A9-A2FD-CB67B3396941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6B3DAC-744B-478C-90F6-D8B5CAE59565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6B3DAC-744B-478C-90F6-D8B5CAE59565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6B3DAC-744B-478C-90F6-D8B5CAE59565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6B3DAC-744B-478C-90F6-D8B5CAE59565}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
