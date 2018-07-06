@@ -10,6 +10,11 @@ namespace Queries
     {
         static void Main(string[] args)
         {
+          var numbers = MyLinq.Random().Where(m=>m>0.5).Take(10);
+          foreach (var number in numbers)
+          {
+            Console.WriteLine(number);
+          }
             var movies = new List<Movie>
             {
                 new Movie { Title="The Dark Knight",Rating=8.9f,Year=2008},
@@ -19,12 +24,14 @@ namespace Queries
 
             };
 
-            var query = movies.Filter(m=>m.Year>2000);
+            //var query = movies.Filter(m=>m.Year>2000);
 
-            foreach (var movie in query)
-            {
-                Console.WriteLine(movie.Title);
-            }
-        }
+          var query = movies.Where(m => m.Year > 2000).OrderByDescending(m=>m.Rating);
+
+      foreach (var movie in query)
+      {
+        Console.WriteLine(movie.Title);
+      }
+    }
     }
 }
