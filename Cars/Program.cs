@@ -23,18 +23,18 @@ namespace Cars
       //{
       //  Console.WriteLine(manufacturer.Name);
       //}
-      //var query = from car in cars
-      //  join manufacturer in manufacturers
-      //    on car.Manufacturer equals manufacturer.Name
-      //  orderby car.Combined descending, manufacturer.Name
-      //  select new
-      //  {
-      //    car.Manufacturer,
-      //    manufacturer.Headquarters,
-      //    car.Combined
-      //  };
+          var query2 = from car in cars
+            join manufacturer in manufacturers
+              on new {car.Manufacturer, car.Year} equals new {Manufacturer = manufacturer.Name, manufacturer.Year}
+            orderby car.Combined descending, car.Name
+            select new
+            {
+              manufacturer.Name,
+              manufacturer.Headquarters,
+              car.Year
+            };
 
-          var query = cars.Join(manufacturers, c => c.Manufacturer, m => m.Name, (c, m) => new
+     var query = cars.Join(manufacturers, c => new {c.Manufacturer,c.Year}, m => new {Manufacturer=m.Name,m.Year}, (c, m) => new
           {
             Manufacturer = c.Manufacturer,
             Headquarters = m.Headquarters,
