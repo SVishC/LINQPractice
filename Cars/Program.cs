@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Cars
 {
@@ -12,6 +13,7 @@ namespace Cars
   {
     static void Main(string[] args)
     {
+      #region LINQ
       //var cars = ProcessFile("fuel.csv");
       var cars = ProcessCars("fuel.csv");
       var manufacturers = ProcessManufacturers("manufacturers.csv");
@@ -176,16 +178,56 @@ namespace Cars
         ).OrderByDescending(r => r.Max);
 
 
-      foreach (var result in aggQuery2)
+      //foreach (var result in aggQuery2)
+      //{
+      //  Console.WriteLine($"{result.Name}");
+      //  Console.WriteLine($"\tMax : {result.Max}");
+      //  Console.WriteLine($"\tMin : {result.Min}");
+      //  Console.WriteLine($"\tAvg : {result.Avg}");
+
+      //}
+
+
+
+      #endregion
+      #endregion
+
+      #region LinqToXml
+
+      //code to write into xml
+      var records = ProcessCars("fuel.csv");
+
+      var document=new XDocument();
+
+      var cars1=new XElement("Cars",
+        
+        from record in records
+        select new XElement("Car",new XAttribute("Name",record.Name),
+        new XAttribute("Combined",record.Combined),
+        new XAttribute("Manufacturer",record.Manufacturer)));
+      document.Add(cars1);
+      document.Save("fuel.xml");
+
+
+
+      //to read xml
+
+      var readDocument = XDocument.Load("fuel.xml");
+
+      var queryDoc = from element in readDocument.Element("Cars")?.Elements("Car")
+        where element.Attribute("Manufacturer")?.Value == "BMW"
+        select element.Attribute("Name")?.Value;
+
+      var queryDoc2 = readDocument.Element("Cars")?
+        .Elements("Car")
+        .Where(e => e.Attribute("Manufacturer")?.Value == "BMW")
+        .Select(ele => ele.Attribute("Name")?.Value);
+
+      foreach (var carName in queryDoc2)
       {
-        Console.WriteLine($"{result.Name}");
-        Console.WriteLine($"\tMax : {result.Max}");
-        Console.WriteLine($"\tMin : {result.Min}");
-        Console.WriteLine($"\tAvg : {result.Avg}");
-
+        Console.WriteLine(carName);
+        
       }
-
-
 
       #endregion
     }
